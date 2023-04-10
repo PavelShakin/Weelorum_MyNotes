@@ -11,7 +11,7 @@ object AppPlugins {
 
     object Versions {
         const val android = "7.4.2"
-        const val kotlin = "1.8.20"
+        const val kotlin = "1.7.0"
         const val navigation = "2.5.1"
         const val detekt = "1.21.0"
         const val ktLint = "10.3.0"

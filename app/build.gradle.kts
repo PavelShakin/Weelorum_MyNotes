@@ -32,7 +32,6 @@ android {
         }
     }
     compileOptions {
-        isCoreLibraryDesugaringEnabled = true
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
@@ -52,7 +51,6 @@ dependencies {
     implementation(Dependencies.AndroidBase.appcompat)
     implementation(Dependencies.AndroidBase.material)
     implementation(Dependencies.AndroidBase.constraintLayout)
-    implementation("androidx.core:core-ktx:+")
     runtimeOnly(Dependencies.AndroidBase.kotlinxMetadataJvm)
     //endregion
 
