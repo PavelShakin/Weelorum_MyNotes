@@ -1,0 +1,20 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.mynotes.android.app-mergeDebugResources-75:/values-hdpi-v4/values-hdpi-v4.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\pashk\\.gradle\\caches\\transforms-3\\f46885bae9715921b89850fa351d35c4\\transformed\\appcompat-1.4.1\\res\\values-hdpi-v4\\values-hdpi-v4.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "6",
+                        "endColumns": "13",
+                        "endOffsets": "327"
+                    }
+                }
+            ]
+        }
+    ]
+}
