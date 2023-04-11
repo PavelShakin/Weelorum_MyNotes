@@ -2,21 +2,17 @@ import com.mynotes.android.buildSrc.Config
 import com.mynotes.android.buildSrc.Dependencies
 
 plugins {
-    id("com.android.application")
+    id("com.android.library")
     kotlin("android")
     kotlin("kapt")
 }
 
 android {
-    namespace = Config.applicationId
     compileSdk = Config.compileSdk
 
     defaultConfig {
-        applicationId = Config.applicationId
         minSdk = Config.minSdk
         targetSdk = Config.targetSdk
-        versionCode = Config.versionCode
-        versionName = Config.versionName
         multiDexEnabled = true
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner = Config.testInstrumentationRunner
@@ -24,32 +20,28 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = Dependencies.Compose.compileVersion
+    }
+
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_11.toString()
-    }
-    buildFeatures {
-        viewBinding = true
-        compose = true
     }
 }
 
 dependencies {
-    //region Modules
-    implementation(project(Dependencies.Modules.core))
-    implementation(project(Dependencies.Modules.resources))
-    implementation(project(Dependencies.Modules.notes))
-    //endregion
 
     //region AndroidBase
     implementation(Dependencies.AndroidBase.ktx)
@@ -59,18 +51,17 @@ dependencies {
     runtimeOnly(Dependencies.AndroidBase.kotlinxMetadataJvm)
     //endregion
 
+    //region Tests
+    testImplementation(Dependencies.Tests.junit)
+    androidTestImplementation(Dependencies.Tests.extJunit)
+    androidTestImplementation(Dependencies.Tests.espressoCore)
+    //endregion
+
     //region Navigation
     implementation(Dependencies.Navigation.fragment)
     implementation(Dependencies.Navigation.ui)
     implementation(Dependencies.Navigation.compose)
     implementation(Dependencies.Navigation.testing)
-    //endregion
-
-    //region DI
-    implementation(Dependencies.DI.dagger)
-    implementation(Dependencies.DI.daggerSupport)
-    kapt(Dependencies.DI.daggerCompiler)
-    kapt(Dependencies.DI.daggerAndroidProcessor)
     //endregion
 
     //region Compose
@@ -79,19 +70,17 @@ dependencies {
     implementation(Dependencies.Compose.material)
     implementation(Dependencies.Compose.tooling)
     implementation(Dependencies.Compose.livedata)
-    implementation(Dependencies.Compose.coil)
-    implementation(Dependencies.Compose.coilCompose)
-    implementation(Dependencies.Compose.compiler)
     implementation(Dependencies.Compose.accompanist)
     implementation(Dependencies.Compose.permissions)
     androidTestImplementation(Dependencies.Compose.uiTest)
     debugImplementation(Dependencies.Compose.toolingTest)
     //endregion
 
-    //region Tests
-    testImplementation(Dependencies.Tests.junit)
-    androidTestImplementation(Dependencies.Tests.extJunit)
-    androidTestImplementation(Dependencies.Tests.espressoCore)
+    //region DI
+    implementation(Dependencies.DI.dagger)
+    implementation(Dependencies.DI.daggerSupport)
+    kapt(Dependencies.DI.daggerCompiler)
+    kapt(Dependencies.DI.daggerAndroidProcessor)
     //endregion
 
     //region Lifecycle
@@ -102,4 +91,12 @@ dependencies {
     implementation(Dependencies.Lifecycle.viewModelSavedState)
     kapt(Dependencies.Lifecycle.compiler)
     //endregion
+
+    //region Room
+    api(Dependencies.Room.runtime)
+    kapt(Dependencies.Room.compiler)
+    implementation(Dependencies.Room.roomKtx)
+    testImplementation(Dependencies.Room.testing)
+    //endregion
+
 }

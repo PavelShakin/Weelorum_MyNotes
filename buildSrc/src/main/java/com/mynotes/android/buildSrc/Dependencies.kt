@@ -113,4 +113,13 @@ object Dependencies {
         const val mockitoCore = ("org.mockito:mockito-core:$mockitoVersion")
         const val mockitoAndroid = ("org.mockito:mockito-android:$mockitoVersion")
     }
+
+    /**
+     * com.mynotes.android.buildsrc.Dependencies: Modules
+     */
+    object Modules {
+        val core = mapOf("path" to ":core")
+        val resources = mapOf("path" to ":resources")
+        val notes = mapOf("path" to ":notes")
+    }
 }
