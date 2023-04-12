@@ -4,7 +4,7 @@
             "outputFile": "com.mynotes.android.app-mergeDebugResources-75:/values-v17/values-v17.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\pashk\\.gradle\\caches\\transforms-3\\f46885bae9715921b89850fa351d35c4\\transformed\\appcompat-1.4.1\\res\\values-v17\\values-v17.xml",
+                    "source": "C:\\Users\\pashk\\.gradle\\caches\\transforms-3\\91e5b0f8944a6766c4a4ce051b1806a0\\transformed\\appcompat-1.4.1\\res\\values-v17\\values-v17.xml",
                     "from": {
                         "startLines": "2,5,9,12,15,18,22,25,29,33,37,40,43,46,50,53,57",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",

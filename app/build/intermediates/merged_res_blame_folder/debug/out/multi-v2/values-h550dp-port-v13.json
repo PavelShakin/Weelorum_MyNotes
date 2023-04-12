@@ -4,7 +4,7 @@
             "outputFile": "com.mynotes.android.app-mergeDebugResources-75:/values-h550dp-port-v13/values-h550dp-port-v13.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\pashk\\.gradle\\caches\\transforms-3\\11670b7157c133cdda4bd5476aac29fe\\transformed\\material-1.5.0\\res\\values-h550dp-port-v13\\values-h550dp-port-v13.xml",
+                    "source": "C:\\Users\\pashk\\.gradle\\caches\\transforms-3\\def8b680a51578388d4e7824cde839ab\\transformed\\material-1.5.0\\res\\values-h550dp-port-v13\\values-h550dp-port-v13.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

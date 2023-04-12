@@ -51,7 +51,6 @@ dependencies {
     implementation(Dependencies.AndroidBase.appcompat)
     implementation(Dependencies.AndroidBase.material)
     implementation(Dependencies.AndroidBase.constraintLayout)
-    implementation(project(mapOf("path" to ":core")))
     runtimeOnly(Dependencies.AndroidBase.kotlinxMetadataJvm)
     //endregion
 

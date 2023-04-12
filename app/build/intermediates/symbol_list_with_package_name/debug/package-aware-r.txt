@@ -1970,7 +1970,6 @@ dimen fab_margin
 dimen fastscroll_default_thickness
 dimen fastscroll_margin
 dimen fastscroll_minimum_range
-dimen grid_0
 dimen highlight_alpha_material_colored
 dimen highlight_alpha_material_dark
 dimen highlight_alpha_material_light
@@ -2701,7 +2700,6 @@ id counterclockwise
 id currentState
 id custom
 id customPanel
-id customer_nav_graph
 id cut
 id date_picker_actions
 id decelerate
@@ -2858,7 +2856,6 @@ id mtrl_picker_text_input_range_start
 id mtrl_picker_title_text
 id mtrl_view_tag_bottom_padding
 id multiply
-id myNotesFragment
 id nav_controller_view_tag
 id nav_graph
 id nav_host_fragment
@@ -2878,7 +2875,6 @@ id noState
 id none
 id normal
 id north
-id notes_nav_host_fragment
 id notification_background
 id notification_main_column
 id notification_main_column_container
@@ -3156,7 +3152,6 @@ layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_end_icon
 layout design_text_input_start_icon
-layout fragment_notes_root
 layout m3_alert_dialog
 layout m3_alert_dialog_actions
 layout m3_alert_dialog_title
@@ -3232,7 +3227,6 @@ menu menu_main
 mipmap ic_launcher
 mipmap ic_launcher_round
 navigation nav_graph
-navigation notes_nav_graph
 plurals mtrl_badge_content_description
 string abc_action_bar_home_description
 string abc_action_bar_up_description

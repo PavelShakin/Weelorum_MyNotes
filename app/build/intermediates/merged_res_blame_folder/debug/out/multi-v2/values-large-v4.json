@@ -4,7 +4,7 @@
             "outputFile": "com.mynotes.android.app-mergeDebugResources-75:/values-large-v4/values-large-v4.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\pashk\\.gradle\\caches\\transforms-3\\11670b7157c133cdda4bd5476aac29fe\\transformed\\material-1.5.0\\res\\values-large-v4\\values-large-v4.xml",
+                    "source": "C:\\Users\\pashk\\.gradle\\caches\\transforms-3\\def8b680a51578388d4e7824cde839ab\\transformed\\material-1.5.0\\res\\values-large-v4\\values-large-v4.xml",
                     "from": {
                         "startLines": "2,3,4,10",
                         "startColumns": "4,4,4,4",
@@ -23,7 +23,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\pashk\\.gradle\\caches\\transforms-3\\f46885bae9715921b89850fa351d35c4\\transformed\\appcompat-1.4.1\\res\\values-large-v4\\values-large-v4.xml",
+                    "source": "C:\\Users\\pashk\\.gradle\\caches\\transforms-3\\91e5b0f8944a6766c4a4ce051b1806a0\\transformed\\appcompat-1.4.1\\res\\values-large-v4\\values-large-v4.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10",
                         "startColumns": "4,4,4,4,4,4,4,4,4",

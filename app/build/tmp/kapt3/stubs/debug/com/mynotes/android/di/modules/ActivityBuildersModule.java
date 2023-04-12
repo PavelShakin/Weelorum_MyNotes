@@ -7,6 +7,6 @@ import java.lang.System;
 public abstract interface ActivityBuildersModule {
     
     @org.jetbrains.annotations.NotNull()
-    @dagger.android.ContributesAndroidInjector()
+    @dagger.android.ContributesAndroidInjector(modules = {com.mynotes.android.di.modules.ViewModelModule.class, com.mynotes.android.di.modules.FragmentBuildersModule.class, com.mynotes.android.di.modules.ViewModelFactoryModule.class})
     public abstract com.mynotes.android.screens.base.MainActivity contributeMainActivity();
 }

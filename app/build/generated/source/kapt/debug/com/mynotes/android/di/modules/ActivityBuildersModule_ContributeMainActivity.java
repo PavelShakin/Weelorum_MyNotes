@@ -23,7 +23,13 @@ public abstract class ActivityBuildersModule_ContributeMainActivity {
   abstract AndroidInjector.Factory<?> bindAndroidInjectorFactory(
       MainActivitySubcomponent.Factory builder);
 
-  @Subcomponent
+  @Subcomponent(
+      modules = {
+          ViewModelModule.class,
+          FragmentBuildersModule.class,
+          ViewModelFactoryModule.class
+      }
+  )
   public interface MainActivitySubcomponent extends AndroidInjector<MainActivity> {
     @Subcomponent.Factory
     interface Factory extends AndroidInjector.Factory<MainActivity> {
