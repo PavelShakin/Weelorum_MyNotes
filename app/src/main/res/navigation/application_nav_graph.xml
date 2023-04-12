@@ -4,7 +4,7 @@
     android:id="@+id/application_nav_graph"
     app:startDestination="@id/splashFragment">
 
-    <deepLink app:uri="comvortex://splash" />
+    <deepLink app:uri="commynotes://splash" />
 
     <fragment
         android:id="@+id/splashFragment"
