@@ -4,13 +4,10 @@
     android:id="@+id/application_nav_graph"
     app:startDestination="@id/splashFragment">
 
-    <deepLink app:uri="commynotes://splash" />
-
     <fragment
         android:id="@+id/splashFragment"
         android:name="com.mynotes.android.screens.splash.SplashFragment"
-        android:label=" "/>
-
-    <include app:graph="@navigation/notes_nav_graph" />
+        android:label=" " >
+    </fragment>
 
 </navigation>

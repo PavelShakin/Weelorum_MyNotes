@@ -40,12 +40,15 @@ android {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_11.toString()
     }
+
+    buildFeatures {
+        compose = true
+    }
 }
 
 dependencies {
     //region Modules
     implementation(project(Dependencies.Modules.core))
-    implementation(project(Dependencies.Modules.resources))
     //endregion
 
     //region AndroidBase

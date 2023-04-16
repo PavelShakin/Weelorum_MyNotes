@@ -6,7 +6,7 @@ object Dependencies {
      * com.vortex.android.buildsrc.Dependencies: Android base libraries
      */
     object AndroidBase {
-        const val ktx = ("androidx.core:core-ktx:1.7.0")
+        const val ktx = ("androidx.core:core-ktx:1.7.10")
         const val appcompat = ("androidx.appcompat:appcompat:1.4.1")
         const val material = ("com.google.android.material:material:1.5.0")
         const val constraintLayout = ("androidx.constraintlayout:constraintlayout:2.1.3")
