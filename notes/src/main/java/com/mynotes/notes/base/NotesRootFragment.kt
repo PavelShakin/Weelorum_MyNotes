@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.mynotes.core.views.BaseFragment
+import com.mynotes.notes.databinding.FragmentNotesRootBinding
 
 class NotesRootFragment : BaseFragment() {
 
@@ -12,7 +13,8 @@ class NotesRootFragment : BaseFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return super.onCreateView(inflater, container, savedInstanceState)
+    ): View {
+        val binding = FragmentNotesRootBinding.inflate(inflater, container, false)
+        return binding.root
     }
 }

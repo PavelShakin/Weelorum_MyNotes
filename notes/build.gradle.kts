@@ -43,12 +43,14 @@ android {
 
     buildFeatures {
         compose = true
+        viewBinding = true
     }
 }
 
 dependencies {
     //region Modules
     implementation(project(Dependencies.Modules.core))
+    implementation(project(Dependencies.Modules.resources))
     //endregion
 
     //region AndroidBase
