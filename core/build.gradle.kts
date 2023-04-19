@@ -9,6 +9,7 @@ plugins {
 
 android {
     compileSdk = Config.compileSdk
+    namespace = Config.coreId
 
     defaultConfig {
         minSdk = Config.minSdk
@@ -38,6 +39,10 @@ android {
 
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_11.toString()
+    }
+
+    buildFeatures {
+        compose = true
     }
 }
 

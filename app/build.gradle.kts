@@ -31,13 +31,20 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = Dependencies.Compose.compileVersion
+    }
+
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_11.toString()
     }
+
     buildFeatures {
         viewBinding = true
         compose = true
@@ -45,13 +52,17 @@ android {
 }
 
 dependencies {
+    //region Modules
+    implementation(project(Dependencies.Modules.core))
+    implementation(project(Dependencies.Modules.resources))
+    implementation(project(Dependencies.Modules.notes))
+    //endregion
 
     //region AndroidBase
     implementation(Dependencies.AndroidBase.ktx)
     implementation(Dependencies.AndroidBase.appcompat)
     implementation(Dependencies.AndroidBase.material)
     implementation(Dependencies.AndroidBase.constraintLayout)
-    implementation(project(mapOf("path" to ":core")))
     runtimeOnly(Dependencies.AndroidBase.kotlinxMetadataJvm)
     //endregion
 
