@@ -23,27 +23,4 @@ plugins {
 
 subprojects {
     apply(plugin = "org.jlleitschuh.gradle.ktlint")
-    configureKtLint()
-}
-
-ktlint {
-    reporters {
-        reporter(org.jlleitschuh.gradle.ktlint.reporter.ReporterType.HTML)
-        reporter(org.jlleitschuh.gradle.ktlint.reporter.ReporterType.CHECKSTYLE)
-        reporter(org.jlleitschuh.gradle.ktlint.reporter.ReporterType.JSON)
-    }
-}
-
-fun configureKtLint() {
-    configure<org.jlleitschuh.gradle.ktlint.KtlintExtension> {
-        debug.set(true)
-        android.set(true)
-        ignoreFailures.set(true)
-        disabledRules.set(setOf("no-wildcard-imports"))
-        baseline.set(file("ktlint-baseline.xml"))
-        filter {
-            exclude("**/generated/**")
-            include("**/kotlin/**")
-        }
-    }
 }
