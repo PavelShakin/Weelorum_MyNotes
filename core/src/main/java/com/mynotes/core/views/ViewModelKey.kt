@@ -1,4 +1,4 @@
-package com.mynotes.android.di.modules
+package com.mynotes.core.views
 
 import androidx.lifecycle.ViewModel
 import dagger.MapKey

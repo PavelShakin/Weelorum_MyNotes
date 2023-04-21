@@ -34,9 +34,9 @@ abstract class BaseFragment : Fragment() {
         navigate(
             NavCommand(
                 DeepLink(
-                  url = uri,
-                  isModal = isModal,
-                  isSingleTop = isSingleTop
+                    url = uri,
+                    isModal = isModal,
+                    isSingleTop = isSingleTop
                 )
             )
         )

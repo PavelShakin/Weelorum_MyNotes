@@ -103,5 +103,4 @@ dependencies {
     implementation(Dependencies.Room.roomKtx)
     testImplementation(Dependencies.Room.testing)
     //endregion
-
 }
