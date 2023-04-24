@@ -23,7 +23,7 @@ fun EditNoteComponent(
     onTitleValueChange: (TextFieldValue) -> Unit,
     noteValue: TextFieldValue,
     onNoteValueChange: (TextFieldValue) -> Unit,
-    buttonEnabled: Boolean,
+    buttonEnabled: Boolean = false,
     onSaveClick: () -> Unit,
     isAlertShowing: Boolean = false,
     onNavigateToNotesScreenClick: () -> Unit,

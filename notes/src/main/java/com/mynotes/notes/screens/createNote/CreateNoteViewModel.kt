@@ -53,7 +53,6 @@ class CreateNoteViewModel @Inject constructor() :
         viewModelScope.launch {
             if (viewState is CreateNoteViewState.State) {
                 val state = (viewState as CreateNoteViewState.State)
-                viewState = state.copy(isAlertShowing = false)
                 viewAction = CreateNoteAction.NextPage
             }
         }

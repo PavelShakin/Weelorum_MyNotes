@@ -10,7 +10,8 @@ data class MyNotesColors(
     val backgroundColor: Color,
     val textColor: Color,
     val dividerColor: Color,
-    val dismissColor: Color
+    val dismissColor: Color,
+    val disabledButtonColor: Color
 )
 
 @SuppressLint("InvalidColorHexValue")
@@ -21,5 +22,6 @@ val basePalette = MyNotesColors(
     backgroundColor = Color(color = 0xFFFFE1BB),
     textColor = Color(color = 0xFF463C2F),
     dividerColor = Color(color = 0xFF776242),
-    dismissColor = Color(color = 0xFFA74939)
+    dismissColor = Color(color = 0xFFA74939),
+    disabledButtonColor = Color(color = 0x80FFB151)
 )

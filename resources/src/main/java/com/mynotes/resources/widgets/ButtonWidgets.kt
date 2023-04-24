@@ -27,7 +27,8 @@ object ButtonWidgets {
             enabled = enabled,
             shape = RoundedCornerShape(12.dp),
             colors = ButtonDefaults.buttonColors(
-                backgroundColor = MyNotesTheme.colors.primaryColor
+                backgroundColor = MyNotesTheme.colors.primaryColor,
+                disabledBackgroundColor = MyNotesTheme.colors.disabledButtonColor,
             )
         ) {
             Text(
