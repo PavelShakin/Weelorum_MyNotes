@@ -25,7 +25,7 @@ object EditTextWidgets {
             shape = RoundedCornerShape(10.dp),
             colors = TextFieldDefaults.textFieldColors(
                 textColor = MyNotesTheme.colors.textColor,
-                backgroundColor = MyNotesTheme.colors.editTextBackgroundColor,
+                backgroundColor = MyNotesTheme.colors.backgroundColor,
                 cursorColor = MyNotesTheme.colors.textColor,
                 disabledIndicatorColor = MyNotesTheme.colors.transparent,
                 focusedIndicatorColor = MyNotesTheme.colors.transparent,

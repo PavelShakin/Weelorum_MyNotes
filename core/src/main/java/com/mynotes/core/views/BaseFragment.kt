@@ -2,7 +2,9 @@ package com.mynotes.core.views
 
 import android.content.Context
 import android.net.Uri
+import android.os.Bundle
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.mynotes.core.contracts.dispatchers.ICoroutineDispatchers
 import com.mynotes.core.navigation.DeepLink
 import com.mynotes.core.navigation.NavCommand
@@ -40,5 +42,12 @@ abstract class BaseFragment : Fragment() {
                 )
             )
         )
+    }
+
+    protected fun navigateToAction(
+        action: Int,
+        bundle: Bundle? = null
+    ) {
+        findNavController().navigate(action, bundle)
     }
 }

@@ -4,14 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.addCallback
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.compose.ui.text.input.TextFieldValue
 import com.mynotes.core.views.BaseFragment
 import com.mynotes.core.views.utils.injectViewModel
+import com.mynotes.notes.R
 import com.mynotes.resources.components.EditNoteComponent
 import com.mynotes.resources.themes.AppTheme
 
@@ -26,6 +29,10 @@ class CreateNoteFragment : BaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        requireActivity().onBackPressedDispatcher.addCallback(this) {
+            viewModel.obtainEvent(CreateNoteEvent.OnBackPressed)
+        }
+        subscriptions()
         return ComposeView(requireContext())
             .apply {
                 setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
@@ -34,16 +41,30 @@ class CreateNoteFragment : BaseFragment() {
                         is CreateNoteViewState.State -> {
                             setContent {
                                 AppTheme {
-                                    val title by remember { mutableStateOf(TextFieldValue(text = state.title)) }
-                                    val note by remember { mutableStateOf(TextFieldValue(text = state.note)) }
+                                    var title by remember { mutableStateOf(TextFieldValue(text = "")) }
+                                    var note by remember { mutableStateOf(TextFieldValue(text = "")) }
                                     EditNoteComponent(
                                         titleValue = title,
-                                        onTitleValueChange = {},
+                                        onTitleValueChange = {
+                                            title = it
+                                            viewModel.obtainEvent(CreateNoteEvent.UpdateTitle(it.text))
+                                        },
                                         noteValue = note,
-                                        onNoteValueChange = {},
-                                        buttonEnabled = false,
-                                        onBackClick = {},
-                                        onSaveClick = {}
+                                        onNoteValueChange = {
+                                            note = it
+                                            viewModel.obtainEvent(CreateNoteEvent.UpdateNote(it.text))
+                                        },
+                                        buttonEnabled = state.buttonEnabled,
+                                        onSaveClick = {
+                                            viewModel.obtainEvent(CreateNoteEvent.Save)
+                                        },
+                                        isAlertShowing = state.isAlertShowing,
+                                        onNavigateToNotesScreenClick = {
+                                            viewModel.obtainEvent(CreateNoteEvent.NavigateToNotesScreen)
+                                        },
+                                        onContinueClick = {
+                                            viewModel.obtainEvent(CreateNoteEvent.Continue)
+                                        }
                                     )
                                 }
                             }
@@ -51,5 +72,15 @@ class CreateNoteFragment : BaseFragment() {
                     }
                 }
             }
+    }
+
+    private fun subscriptions() {
+        viewModel.viewActions().observe(viewLifecycleOwner) { action ->
+            when (action) {
+                is CreateNoteAction.NextPage -> {
+                    navigateToAction(R.id.action_createNoteFragment_to_myNotesFragment)
+                }
+            }
+        }
     }
 }

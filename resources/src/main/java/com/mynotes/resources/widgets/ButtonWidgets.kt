@@ -32,7 +32,7 @@ object ButtonWidgets {
         ) {
             Text(
                 text = text,
-                color = MyNotesTheme.colors.secondaryColor
+                style = MyNotesTheme.typography.button
             )
         }
     }
