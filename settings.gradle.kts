@@ -17,5 +17,7 @@ include(
     ":app",
     ":core",
     ":notes",
-    ":resources"
+    ":resources",
+    ":database",
+    ":data"
 )
