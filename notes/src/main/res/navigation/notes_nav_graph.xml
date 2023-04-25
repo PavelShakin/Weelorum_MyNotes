@@ -11,12 +11,18 @@
         android:name="com.mynotes.notes.screens.notes.MyNotesFragment"
         android:label="">
 
+        <action
+            android:id="@+id/action_myNotesFragment_to_createNoteFragment"
+            app:destination="@id/createNoteFragment" />
     </fragment>
     <fragment
         android:id="@+id/createNoteFragment"
         android:name="com.mynotes.notes.screens.createNote.CreateNoteFragment"
         android:label="">
 
+        <action
+            android:id="@+id/action_createNoteFragment_to_myNotesFragment"
+            app:destination="@id/myNotesFragment" />
         <deepLink app:uri="commynotes://createNote" />
     </fragment>
 </navigation>

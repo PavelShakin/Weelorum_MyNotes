@@ -48,6 +48,10 @@ android {
 
 dependencies {
 
+    //region Modules
+    implementation(project(Dependencies.Modules.core))
+    //endregion
+
     //region AndroidBase
     implementation(Dependencies.AndroidBase.ktx)
     implementation(Dependencies.AndroidBase.appcompat)
@@ -103,5 +107,4 @@ dependencies {
     implementation(Dependencies.Room.roomKtx)
     testImplementation(Dependencies.Room.testing)
     //endregion
-
 }

@@ -4,6 +4,7 @@ import androidx.lifecycle.viewModelScope
 import com.mynotes.core.contracts.dispatchers.ICoroutineDispatchers
 import com.mynotes.core.contracts.handlers.EventHandler
 import com.mynotes.core.views.BaseViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -13,6 +14,10 @@ class SplashViewModel @Inject constructor(
 ) : BaseViewModel<SplashViewState, SplashAction>(),
     EventHandler<SplashEvent> {
 
+    companion object {
+        private const val DEFAULT_DELAY = 2000L
+    }
+
     init {
         viewState = SplashViewState.IsLoadingState()
     }
@@ -20,7 +25,8 @@ class SplashViewModel @Inject constructor(
     private fun checkIsNotesEmpty() {
         viewModelScope.launch {
             withContext(defaultDispatcher.io) {
-                viewState = SplashViewState.IsNotesEmptyState()
+                delay(DEFAULT_DELAY)
+                viewState = SplashViewState.IsNotesEmptyState(true)
                 obtainEvent(SplashEvent.OnNext)
             }
         }

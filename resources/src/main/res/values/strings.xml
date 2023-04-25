@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">My Application</string>
+
+    <!-- Actions -->
+    <string name="action_save">Save</string>
+    <string name="action_go_back">Go back</string>
+    <string name="action_continue">Continue</string>
+
+    <!-- Notes -->
+    <string name="notes_empty_placeholder">You haven\'t create any notes yet</string>
+    <string name="note_empty_title">Untitled</string>
+    <string name="note_empty_alert_title">Note is empty</string>
+    <string name="note_empty_alert_subtitle">You\'re trying to save empty note. Do you want go back to your notes or continue creating this?</string>
+
+    <!-- Toast -->
+    <string name="press_back_to_leave">Press back again to leave the app</string>
 </resources>

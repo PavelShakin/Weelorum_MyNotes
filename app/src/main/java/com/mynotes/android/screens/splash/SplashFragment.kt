@@ -56,10 +56,9 @@ class SplashFragment : BaseFragment() {
 
     private fun subscriptions() {
         viewModel.viewStates().observe(viewLifecycleOwner) {
-
         }
         viewModel.viewActions().observe(viewLifecycleOwner) {
-            when(it) {
+            when (it) {
                 SplashAction.OnNotesListScreen -> {
                     navigateToDeepLink(NavRoutes.getNotesPagePath(), isSingleTop = true)
                 }
