@@ -123,5 +123,6 @@ object Dependencies {
         val notes = mapOf("path" to ":notes")
         val database = mapOf("path" to ":database")
         val data = mapOf("path" to ":data")
+        val domain = mapOf("path" to ":domain")
     }
 }

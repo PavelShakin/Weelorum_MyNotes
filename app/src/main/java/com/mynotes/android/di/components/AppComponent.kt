@@ -6,9 +6,10 @@ import com.mynotes.android.configuration.BaseApplication
 import com.mynotes.android.di.annotation.ApplicationScope
 import com.mynotes.android.di.modules.ActivityBuildersModule
 import com.mynotes.android.di.modules.AppModule
-import com.mynotes.data.di.components.DataComponent
 import com.mynotes.data.di.modules.RepositoryModule
 import com.mynotes.database.di.modules.DatabaseModule
+import com.mynotes.domain.di.components.DomainComponent
+import com.mynotes.domain.di.modules.UseCasesModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
@@ -24,7 +25,8 @@ import javax.inject.Singleton
         AppModule::class,
         ActivityBuildersModule::class,
         DatabaseModule::class,
-        RepositoryModule::class
+        RepositoryModule::class,
+        UseCasesModule::class
     ]
 )
 @ApplicationScope
@@ -37,7 +39,7 @@ interface AppComponent : AndroidInjector<BaseApplication> {
         fun application(@NonNull application: Application): Builder
 
         @BindsInstance
-        fun dataComponent(component: DataComponent): Builder
+        fun domainComponent(component: DomainComponent): Builder
         fun build(): AppComponent
     }
 }

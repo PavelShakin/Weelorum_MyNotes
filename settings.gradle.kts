@@ -19,5 +19,6 @@ include(
     ":notes",
     ":resources",
     ":database",
-    ":data"
+    ":data",
+    ":domain"
 )
