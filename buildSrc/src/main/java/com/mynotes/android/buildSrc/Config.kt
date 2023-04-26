@@ -35,6 +35,9 @@ object Config {
     const val coreId = "com.mynotes.core"
     const val notesId = "com.mynotes.notes"
     const val resourcesId = "com.mynotes.resources"
+    const val databaseId = "com.mynotes.database"
+    const val dataId = "com.mynotes.data"
+    const val domainId = "com.mynotes.domain"
     /**
      * com.mynotes.android.buildsrc.Config: testInstrumentationRunner
      */
