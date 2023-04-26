@@ -10,11 +10,18 @@ import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import com.mynotes.core.common.GlobalConstraints.backPressDelay
 import com.mynotes.core.views.BaseFragment
+import com.mynotes.core.views.utils.injectViewModel
 import com.mynotes.resources.R
 import com.mynotes.resources.components.NotesListComponent
 import com.mynotes.resources.themes.AppTheme
 
 class MyNotesFragment : BaseFragment() {
+
+    private val viewModel: MyNotesViewModel by lazy {
+        injectViewModel(
+            factory = providerFactory
+        )
+    }
 
     private var backPressedTime: Long = 0
 
@@ -44,5 +51,10 @@ class MyNotesFragment : BaseFragment() {
                     }
                 }
             }
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel.obtainEvent(MyNotesEvent.Load)
     }
 }
