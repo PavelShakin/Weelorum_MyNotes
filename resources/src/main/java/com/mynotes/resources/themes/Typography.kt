@@ -2,27 +2,37 @@ package com.mynotes.resources.themes
 
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
 
 val textHugeSize = 20.sp
 val textMediumSize = 16.sp
-val textSmallSize = 12.sp
 
 data class MyNotesTypography(
     val title: TextStyle,
+    val description: TextStyle,
     val placeholder: TextStyle,
     val button: TextStyle,
     val alertTitle: TextStyle,
     val alertSubtitle: TextStyle,
-    val dismissButton: TextStyle
+    val dismissButton: TextStyle,
+    val editTextError: TextStyle,
+    val header: TextStyle
 )
 
 val baseTypography = MyNotesTypography(
     title = TextStyle(
-        color = basePalette.primaryColor
+        color = basePalette.textColor,
+        fontSize = textMediumSize,
+        fontWeight = FontWeight.SemiBold
+    ),
+    description = TextStyle(
+        color = basePalette.textColor,
+        fontSize = textMediumSize,
+        fontWeight = FontWeight.Normal
     ),
     placeholder = TextStyle(
-        color = basePalette.primaryColor,
+        color = basePalette.secondaryColor,
         fontSize = textMediumSize
     ),
     button = TextStyle(
@@ -43,5 +53,16 @@ val baseTypography = MyNotesTypography(
         color = basePalette.dismissColor,
         fontSize = textMediumSize,
         fontWeight = FontWeight.SemiBold
+    ),
+    editTextError = TextStyle(
+        color = basePalette.errorColor,
+        fontSize = textMediumSize,
+        fontWeight = FontWeight.Normal
+    ),
+    header = TextStyle(
+        color = basePalette.errorColor,
+        fontSize = textMediumSize,
+        fontWeight = FontWeight.Normal,
+        textAlign = TextAlign.Center
     )
 )

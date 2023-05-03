@@ -11,6 +11,11 @@ class GetNotesUseCase @Inject constructor(
 ) : IGetNotesUseCase {
 
     private val mapper = NoteMapper()
+
+    override suspend fun invoke(noteId: String): NoteViewData {
+        return mapper.toDomain(repository.getNoteById(noteId))
+    }
+
     override suspend fun invoke(): List<NoteViewData> {
         return repository.getNotes().map { mapper.toDomain(it) }
     }

@@ -10,7 +10,7 @@ class NoteMapper : BaseMapper<NoteEntity, NoteViewData> {
         return NoteViewData(
             id = model.id,
             title = model.title,
-            note = model.note
+            description = model.note
         )
     }
 
@@ -18,7 +18,7 @@ class NoteMapper : BaseMapper<NoteEntity, NoteViewData> {
         return NoteEntity(
             id = model.id,
             title = model.title,
-            note = model.note
+            note = model.description
         )
     }
 }

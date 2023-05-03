@@ -20,7 +20,7 @@ import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import com.mynotes.core.common.GlobalConstraints.emptyString
+import com.mynotes.core.common.GlobalConstants.emptyString
 import com.mynotes.core.navigation.NavRoutes
 import com.mynotes.core.views.BaseFragment
 import com.mynotes.core.views.utils.injectViewModel
@@ -55,11 +55,9 @@ class SplashFragment : BaseFragment() {
     }
 
     private fun subscriptions() {
-        viewModel.viewStates().observe(viewLifecycleOwner) {
-        }
         viewModel.viewActions().observe(viewLifecycleOwner) {
             when (it) {
-                SplashAction.OnNotesListScreen -> {
+                SplashAction.OnMyNotesScreen -> {
                     navigateToDeepLink(NavRoutes.getNotesPagePath(), isSingleTop = true)
                 }
                 SplashAction.OnCreateNoteScreen -> {

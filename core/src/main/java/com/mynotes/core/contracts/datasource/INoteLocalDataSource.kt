@@ -5,5 +5,6 @@ import com.mynotes.core.models.entities.NoteEntity
 
 interface INoteLocalDataSource : ILocalDataSource<NoteEntity> {
 
+    fun getNote(noteId: String): NoteEntity
     fun getList(): List<NoteEntity>
 }

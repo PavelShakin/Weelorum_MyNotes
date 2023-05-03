@@ -27,6 +27,10 @@ class NoteUseCase @Inject constructor(
         deleteNoteUseCase.invoke(model)
     }
 
+    override suspend fun getNoteById(noteId: String): NoteViewData {
+        return getNotesUseCase.invoke(noteId)
+    }
+
     override suspend fun getNotes(): List<NoteViewData> {
         return getNotesUseCase.invoke()
     }

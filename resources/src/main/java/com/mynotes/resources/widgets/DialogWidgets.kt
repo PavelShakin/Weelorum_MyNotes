@@ -119,4 +119,99 @@ object DialogWidgets {
             }
         }
     }
+
+    @Composable
+    fun DeleteNoteDialog(
+        modifier: Modifier = Modifier
+            .wrapContentSize()
+            .padding(horizontal = 16.dp),
+        title: String,
+        subtitle: String,
+        dismissText: String,
+        confirmText: String,
+        onDismissClick: () -> Unit,
+        onConfirmClick: () -> Unit
+    ) {
+        Box(
+            modifier = Modifier
+                .fillMaxSize(),
+            contentAlignment = Alignment.Center
+        ) {
+            Dialog(
+                onDismissRequest = { onDismissClick.invoke() }
+            ) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize(),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Surface(
+                        modifier = modifier,
+                        shape = RoundedCornerShape(14.dp)
+                    ) {
+                        Column(
+                            modifier = Modifier
+                                .padding(horizontal = 24.dp),
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ) {
+                            SpacerVerticalView()
+                            Text(
+                                text = title,
+                                style = MyNotesTheme.typography.alertTitle
+                            )
+                            SpacerVerticalView()
+                            Text(
+                                text = subtitle,
+                                style = MyNotesTheme.typography.alertSubtitle,
+                                textAlign = TextAlign.Center
+                            )
+                            SpacerVerticalView(16.dp)
+                            Divider(
+                                modifier = Modifier
+                                    .padding(horizontal = 8.dp),
+                                color = MyNotesTheme.colors.dividerColor,
+                                thickness = 0.5.dp
+                            )
+                            SpacerVerticalView(16.dp)
+                            Row(
+                                modifier = Modifier
+                                    .fillMaxWidth(),
+                                horizontalArrangement = Arrangement.SpaceBetween
+                            ) {
+                                Column(
+                                    modifier = Modifier
+                                        .clickableWithoutRipple(
+                                            onClick = { onDismissClick.invoke() }
+                                        )
+                                        .weight(WEIGHT_MAX),
+                                    horizontalAlignment = Alignment.CenterHorizontally,
+                                    verticalArrangement = Arrangement.Center
+                                ) {
+                                    Text(
+                                        text = dismissText,
+                                        style = MyNotesTheme.typography.button
+                                    )
+                                }
+                                Column(
+                                    modifier = Modifier
+                                        .clickableWithoutRipple(
+                                            onClick = { onConfirmClick.invoke() }
+                                        )
+                                        .weight(WEIGHT_MAX),
+                                    horizontalAlignment = Alignment.CenterHorizontally,
+                                    verticalArrangement = Arrangement.Center
+                                ) {
+                                    Text(
+                                        text = confirmText,
+                                        style = MyNotesTheme.typography.dismissButton
+                                    )
+                                }
+                            }
+                            SpacerVerticalView(16.dp)
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

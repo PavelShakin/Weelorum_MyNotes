@@ -60,7 +60,7 @@ class SplashViewModel @Inject constructor(
             viewAction = if (state.isNotesEmpty()) {
                 SplashAction.OnCreateNoteScreen
             } else {
-                SplashAction.OnNotesListScreen
+                SplashAction.OnMyNotesScreen
             }
         }
     }

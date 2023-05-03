@@ -8,6 +8,11 @@ import javax.inject.Inject
 class NoteLocalDataSource @Inject constructor(
     private val dao: NoteDao
 ) : INoteLocalDataSource {
+
+    override fun getNote(noteId: String): NoteEntity {
+        return dao.getNote(noteId)
+    }
+
     override fun getList(): List<NoteEntity> {
         return dao.getList() ?: emptyList()
     }

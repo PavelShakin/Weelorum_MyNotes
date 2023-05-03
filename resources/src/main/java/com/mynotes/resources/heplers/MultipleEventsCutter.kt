@@ -1,6 +1,6 @@
 package com.mynotes.resources.heplers
 
-import com.mynotes.core.common.GlobalConstraints.defaultDelay
+import com.mynotes.core.common.GlobalConstants.defaultDelay
 
 internal interface MultipleEventsCutter {
 

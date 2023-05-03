@@ -50,4 +50,10 @@ abstract class BaseFragment : Fragment() {
     ) {
         findNavController().navigate(action, bundle)
     }
+
+    protected fun goBack() {
+        if (isAdded) {
+            findNavController().popBackStack()
+        }
+    }
 }
