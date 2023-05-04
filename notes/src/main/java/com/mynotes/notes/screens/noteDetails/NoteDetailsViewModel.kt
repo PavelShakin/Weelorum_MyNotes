@@ -48,11 +48,13 @@ class NoteDetailsViewModel @Inject constructor(
                         title = note.title,
                         description = note.description,
                         actual = note,
-                        isLoading = false
+                        isLoading = false,
+                        isEditMode = true
                     )
                 } else {
                     state.copy(
-                        isLoading = false
+                        isLoading = false,
+                        isEditMode = false
                     )
                 }
             }

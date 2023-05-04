@@ -12,18 +12,24 @@ sealed class NoteDetailsViewState {
         val isDeleteDialogShowing: Boolean = false,
         val noteError: Int? = null,
         val actual: NoteViewData? = null,
-        val isLoading: Boolean
+        val isLoading: Boolean,
+        val isEditMode: Boolean = false
     ) : NoteDetailsViewState() {
 
         fun buttonEnabled(): Boolean {
-            if (actual == null) return false
-            else if (noteError != null) return false
-            val params = arrayListOf(
-                actual.title == title,
-                actual.description == description
-            )
+            val params: ArrayList<Boolean>
+            if (isEditMode) {
+                if (actual == null) return false
+                else if (noteError != null) return false
+                params = arrayListOf(
+                    actual.title == title,
+                    actual.description == description
+                )
+            } else {
+                return description.isNotEmpty()
+            }
 
-            return params.firstOrNull { !it }?.not() ?: false
+            return params.any { !it }
         }
     }
 }
