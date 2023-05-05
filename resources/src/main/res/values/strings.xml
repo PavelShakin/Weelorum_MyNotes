@@ -11,6 +11,7 @@
     <!-- Headers -->
     <string name="header_notes_list">My Notes</string>
     <string name="header_note_details">Note Details</string>
+    <string name="header_note_delete_selected">Delete Selected</string>
 
     <!-- Dialogs -->
     <string name="dialog_note_empty_title">Note is empty</string>

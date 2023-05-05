@@ -19,6 +19,7 @@ import com.mynotes.resources.R
 import com.mynotes.resources.components.NotesListComponent
 import com.mynotes.resources.themes.AppTheme
 import com.mynotes.resources.widgets.HeaderWidgets.DefaultTopHeader
+import com.mynotes.resources.widgets.HeaderWidgets.TopHeaderWithDeleteAndCancelButton
 import com.mynotes.notes.R as cR
 
 class MyNotesFragment : BaseFragment() {
@@ -48,16 +49,36 @@ class MyNotesFragment : BaseFragment() {
                             AppTheme {
                                 Scaffold(
                                     topBar = {
-                                        DefaultTopHeader(
-                                            title = stringResource(id = R.string.header_notes_list)
-                                        )
+                                        if (state.isSelectMultipleMode) {
+                                            TopHeaderWithDeleteAndCancelButton(
+                                                title = stringResource(id = R.string.header_note_delete_selected),
+                                                onDeleteClick = {
+                                                    viewModel.obtainEvent(MyNotesEvent.DeleteSelectedNotes)
+                                                },
+                                                onCancelClick = {
+                                                    viewModel.obtainEvent(MyNotesEvent.CancelSelection)
+                                                }
+                                            )
+                                        } else {
+                                            DefaultTopHeader(
+                                                title = stringResource(id = R.string.header_notes_list)
+                                            )
+                                        }
                                     }
                                 ) { padding ->
                                     padding.calculateBottomPadding()
                                     NotesListComponent(
                                         notes = state.notes,
+                                        selectedNotes = state.selectedNotes,
                                         onNoteClick = {
-                                            viewModel.obtainEvent(MyNotesEvent.OnNoteClick(it))
+                                            if (state.isSelectMultipleMode) {
+                                                viewModel.obtainEvent(MyNotesEvent.OnNoteSelect(it))
+                                            } else {
+                                                viewModel.obtainEvent(MyNotesEvent.OnNoteClick(it))
+                                            }
+                                        },
+                                        onNoteLongClick = {
+                                            viewModel.obtainEvent(MyNotesEvent.OnNoteSelect(it))
                                         },
                                         onCreateNoteClick = {
                                             viewModel.obtainEvent(MyNotesEvent.CreateNote)
@@ -104,7 +125,8 @@ class MyNotesFragment : BaseFragment() {
             if (backPressedTime + backPressDelay >= System.currentTimeMillis()) {
                 requireActivity().finish()
             } else {
-                Toast.makeText(context, getString(R.string.press_back_to_leave), Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, getString(R.string.press_back_to_leave), Toast.LENGTH_SHORT)
+                    .show()
             }
             backPressedTime = System.currentTimeMillis()
         }

@@ -25,6 +25,8 @@ class MyNotesViewModel @Inject constructor(
             is MyNotesEvent.Load -> reduceLoad()
             is MyNotesEvent.OnNoteClick -> reduceGoToNoteDetails(event.note)
             is MyNotesEvent.OnNoteSelect -> reduceSelectNote(event.note)
+            is MyNotesEvent.DeleteSelectedNotes -> reduceDeleteSelectedNotes()
+            is MyNotesEvent.CancelSelection -> reduceCancelSelection()
             is MyNotesEvent.CreateNote -> reduceCreateNote()
         }
     }
@@ -49,6 +51,44 @@ class MyNotesViewModel @Inject constructor(
     }
 
     private fun reduceSelectNote(note: NoteViewData) {
+        if (viewState is MyNotesViewState.State) {
+            val state = (viewState as MyNotesViewState.State)
+            val updatedList = state.selectedNotes
+            if (updatedList.contains(note)) {
+                updatedList.remove(note)
+            } else {
+                updatedList.add(note)
+            }
+            viewState = state.copy(
+                selectedNotes = updatedList,
+                isSelectMultipleMode = updatedList.isNotEmpty()
+            )
+        }
+    }
+
+    private fun reduceDeleteSelectedNotes() {
+        viewModelScope.launch {
+            if (viewState is MyNotesViewState.State) {
+                val state = (viewState as MyNotesViewState.State)
+                noteUseCase.deleteNote(state.selectedNotes)
+                val updatedNotes = noteUseCase.getNotes()
+                viewState = state.copy(
+                    notes = updatedNotes,
+                    selectedNotes = mutableListOf(),
+                    isSelectMultipleMode = false
+                )
+            }
+        }
+    }
+
+    private fun reduceCancelSelection() {
+        if (viewState is MyNotesViewState.State) {
+            val state = (viewState as MyNotesViewState.State)
+            viewState = state.copy(
+                selectedNotes = mutableListOf(),
+                isSelectMultipleMode = false
+            )
+        }
     }
 
     private fun reduceCreateNote() {

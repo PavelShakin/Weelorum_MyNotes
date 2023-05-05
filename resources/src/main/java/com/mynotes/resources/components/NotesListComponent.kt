@@ -23,7 +23,9 @@ import com.mynotes.resources.widgets.ButtonWidgets.ButtonAdd
 @Composable
 fun NotesListComponent(
     notes: List<NoteViewData> = emptyList(),
+    selectedNotes: List<NoteViewData> = emptyList(),
     onNoteClick: (NoteViewData) -> Unit,
+    onNoteLongClick: (NoteViewData) -> Unit,
     onCreateNoteClick: () -> Unit
 ) {
     val lazyListState = rememberLazyListState()
@@ -51,7 +53,9 @@ fun NotesListComponent(
                 items(items = notes) { item ->
                     NoteCard(
                         note = item,
-                        onNoteClick = onNoteClick
+                        isSelected = selectedNotes.contains(item),
+                        onNoteClick = onNoteClick,
+                        onNoteLongClick = onNoteLongClick
                     )
                 }
             }

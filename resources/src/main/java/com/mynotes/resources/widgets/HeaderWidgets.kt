@@ -83,4 +83,48 @@ object HeaderWidgets {
             }
         }
     }
+
+    @Composable
+    fun TopHeaderWithDeleteAndCancelButton(
+        title: String = emptyString,
+        background: Color = MyNotesTheme.colors.primaryColor,
+        onDeleteClick: () -> Unit,
+        onCancelClick: () -> Unit
+    ) {
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(background)
+        ) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Icon(
+                    modifier = Modifier.clickableWithoutRipple {
+                        onCancelClick.invoke()
+                    },
+                    painter = painterResource(id = R.drawable.ic_cancel),
+                    contentDescription = null,
+                    tint = MyNotesTheme.colors.textColor
+                )
+                Text(
+                    modifier = Modifier
+                        .padding(start = 8.dp),
+                    text = title,
+                    style = MyNotesTheme.typography.title
+                )
+                Icon(
+                    modifier = Modifier.clickableWithoutRipple {
+                        onDeleteClick.invoke()
+                    },
+                    painter = painterResource(id = R.drawable.ic_delete),
+                    contentDescription = null,
+                    tint = MyNotesTheme.colors.textColor
+                )
+            }
+        }
+    }
 }
