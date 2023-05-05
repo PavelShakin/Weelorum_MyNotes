@@ -6,7 +6,9 @@ sealed class MyNotesViewState {
 
     data class State(
         val isLoading: Boolean = false,
-        val notes: List<NoteViewData> = emptyList()
+        val notes: List<NoteViewData> = emptyList(),
+        val isSelectMultipleMode: Boolean = false,
+        val selectedNotes: MutableList<NoteViewData> = mutableListOf()
     ) : MyNotesViewState()
 }
 
@@ -18,5 +20,7 @@ sealed class MyNotesEvent {
     object Load : MyNotesEvent()
     data class OnNoteClick(val note: NoteViewData) : MyNotesEvent()
     data class OnNoteSelect(val note: NoteViewData) : MyNotesEvent()
+    object DeleteSelectedNotes : MyNotesEvent()
+    object CancelSelection : MyNotesEvent()
     object CreateNote : MyNotesEvent()
 }
