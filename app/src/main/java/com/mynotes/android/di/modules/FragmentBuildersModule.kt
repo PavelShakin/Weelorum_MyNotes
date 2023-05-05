@@ -2,8 +2,8 @@ package com.mynotes.android.di.modules
 
 import com.mynotes.android.screens.splash.SplashFragment
 import com.mynotes.core.views.BaseFragment
-import com.mynotes.notes.screens.createNote.CreateNoteFragment
-import com.mynotes.notes.screens.notes.MyNotesFragment
+import com.mynotes.notes.screens.noteDetails.NoteDetailsFragment
+import com.mynotes.notes.screens.notesList.MyNotesFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -23,5 +23,5 @@ interface FragmentBuildersModule {
     fun contributeNotesListFragment(): MyNotesFragment
 
     @ContributesAndroidInjector
-    fun contributeCreateNoteFragment(): CreateNoteFragment
+    fun contributeCreateNoteFragment(): NoteDetailsFragment
 }

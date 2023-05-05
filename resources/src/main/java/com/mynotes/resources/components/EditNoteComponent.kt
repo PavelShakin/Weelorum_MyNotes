@@ -12,6 +12,7 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import com.mynotes.resources.R
 import com.mynotes.resources.widgets.ButtonWidgets.ButtonWidget
+import com.mynotes.resources.widgets.DialogWidgets.DeleteNoteDialog
 import com.mynotes.resources.widgets.DialogWidgets.EmptyNoteAlertDialog
 import com.mynotes.resources.widgets.EditTextWidgets.EditTextWidget
 import com.mynotes.resources.widgets.Utils.SpacerVerticalView
@@ -25,18 +26,32 @@ fun EditNoteComponent(
     onNoteValueChange: (TextFieldValue) -> Unit,
     buttonEnabled: Boolean = false,
     onSaveClick: () -> Unit,
-    isAlertShowing: Boolean = false,
+    isGoBackDialogShowing: Boolean = false,
+    isDeleteDialogShowing: Boolean = false,
     onNavigateToNotesScreenClick: () -> Unit,
-    onContinueClick: () -> Unit
+    onDeleteNoteClick: () -> Unit,
+    onCancelDialogClick: () -> Unit,
+    isError: Boolean,
+    errorText: Int? = null
 ) {
-    if (isAlertShowing) {
+    if (isGoBackDialogShowing) {
         EmptyNoteAlertDialog(
-            title = stringResource(id = R.string.note_empty_alert_title),
-            subtitle = stringResource(id = R.string.note_empty_alert_subtitle),
+            title = stringResource(id = R.string.dialog_note_empty_title),
+            subtitle = stringResource(id = R.string.dialog_note_empty_subtitle),
             dismissText = stringResource(id = R.string.action_go_back),
             confirmText = stringResource(id = R.string.action_continue),
             onDismissClick = { onNavigateToNotesScreenClick.invoke() },
-            onConfirmClick = { onContinueClick.invoke() }
+            onConfirmClick = { onCancelDialogClick.invoke() }
+        )
+    }
+    if (isDeleteDialogShowing) {
+        DeleteNoteDialog(
+            title = stringResource(id = R.string.dialog_delete_note_title),
+            subtitle = stringResource(id = R.string.dialog_delete_note_subtitle),
+            dismissText = stringResource(id = R.string.action_cancel),
+            confirmText = stringResource(id = R.string.action_delete),
+            onDismissClick = { onCancelDialogClick.invoke() },
+            onConfirmClick = { onDeleteNoteClick.invoke() }
         )
     }
     Box(
@@ -59,7 +74,9 @@ fun EditNoteComponent(
                 SpacerVerticalView()
                 EditTextWidget(
                     value = noteValue,
-                    onValueChange = onNoteValueChange
+                    onValueChange = onNoteValueChange,
+                    isError = isError,
+                    errorText = errorText?.let { stringResource(id = it) }
                 )
             }
             SpacerWeightView()

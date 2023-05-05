@@ -9,7 +9,7 @@ sealed class SplashViewState {
 
 sealed class SplashAction {
     object OnCreateNoteScreen : SplashAction()
-    object OnNotesListScreen : SplashAction()
+    object OnMyNotesScreen : SplashAction()
 }
 
 sealed class SplashEvent {

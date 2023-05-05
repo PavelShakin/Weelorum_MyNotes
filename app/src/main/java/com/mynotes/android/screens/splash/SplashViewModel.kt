@@ -3,6 +3,7 @@ package com.mynotes.android.screens.splash
 import androidx.lifecycle.viewModelScope
 import com.mynotes.core.contracts.dispatchers.ICoroutineDispatchers
 import com.mynotes.core.contracts.handlers.EventHandler
+import com.mynotes.core.usecases.note.IGetNotesUseCase
 import com.mynotes.core.views.BaseViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -10,7 +11,8 @@ import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class SplashViewModel @Inject constructor(
-    private val defaultDispatcher: ICoroutineDispatchers
+    private val defaultDispatcher: ICoroutineDispatchers,
+    private val getNotesUseCase: IGetNotesUseCase
 ) : BaseViewModel<SplashViewState, SplashAction>(),
     EventHandler<SplashEvent> {
 
@@ -26,7 +28,7 @@ class SplashViewModel @Inject constructor(
         viewModelScope.launch {
             withContext(defaultDispatcher.io) {
                 delay(DEFAULT_DELAY)
-                viewState = SplashViewState.IsNotesEmptyState(true)
+                viewState = SplashViewState.IsNotesEmptyState(getNotesUseCase.invoke().isEmpty())
                 obtainEvent(SplashEvent.OnNext)
             }
         }
@@ -58,7 +60,7 @@ class SplashViewModel @Inject constructor(
             viewAction = if (state.isNotesEmpty()) {
                 SplashAction.OnCreateNoteScreen
             } else {
-                SplashAction.OnNotesListScreen
+                SplashAction.OnMyNotesScreen
             }
         }
     }

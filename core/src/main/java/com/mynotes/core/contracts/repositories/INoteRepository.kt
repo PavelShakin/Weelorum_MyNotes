@@ -4,6 +4,7 @@ import com.mynotes.core.models.entities.NoteEntity
 
 interface INoteRepository {
 
+    suspend fun getNoteById(noteId: String): NoteEntity
     suspend fun getNotes(): List<NoteEntity>
     suspend fun create(model: NoteEntity)
     suspend fun update(model: NoteEntity)

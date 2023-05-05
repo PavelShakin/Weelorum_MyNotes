@@ -8,16 +8,16 @@
 
     <fragment
         android:id="@+id/myNotesFragment"
-        android:name="com.mynotes.notes.screens.notes.MyNotesFragment"
+        android:name="com.mynotes.notes.screens.notesList.MyNotesFragment"
         android:label="">
 
         <action
-            android:id="@+id/action_myNotesFragment_to_createNoteFragment"
-            app:destination="@id/createNoteFragment" />
+            android:id="@+id/action_myNotesFragment_to_editNoteFragment"
+            app:destination="@id/editNoteFragment" />
     </fragment>
     <fragment
-        android:id="@+id/createNoteFragment"
-        android:name="com.mynotes.notes.screens.createNote.CreateNoteFragment"
+        android:id="@+id/editNoteFragment"
+        android:name="com.mynotes.notes.screens.noteDetails.NoteDetailsFragment"
         android:label="">
 
         <action

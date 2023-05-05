@@ -11,6 +11,13 @@ class NoteRepository @Inject constructor(
     private val localDataSource: NoteLocalDataSource,
     private val defaultDispatcher: ICoroutineDispatchers,
 ) : INoteRepository {
+
+    override suspend fun getNoteById(noteId: String): NoteEntity {
+        return withContext(defaultDispatcher.io) {
+            localDataSource.getNote(noteId)
+        }
+    }
+
     override suspend fun getNotes(): List<NoteEntity> {
         return withContext(defaultDispatcher.io) {
             localDataSource.getList()
