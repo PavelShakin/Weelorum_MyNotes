@@ -19,7 +19,6 @@ import com.mynotes.core.common.GlobalConstants.emptyString
 import com.mynotes.resources.R
 import com.mynotes.resources.extensions.clickableWithoutRipple
 import com.mynotes.resources.themes.MyNotesTheme
-import com.mynotes.resources.widgets.Utils.SpacerHorizontalView
 
 object HeaderWidgets {
 
