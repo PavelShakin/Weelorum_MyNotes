@@ -64,9 +64,13 @@ class NoteDetailsViewModel @Inject constructor(
     private fun reduceOnBackPress() {
         if (viewState is NoteDetailsViewState.State) {
             val state = (viewState as NoteDetailsViewState.State)
-            viewState = state.copy(
-                isGoBackDialogShowing = true
-            )
+            if (state.description.isEmpty()) {
+                viewState = state.copy(
+                    isGoBackDialogShowing = true
+                )
+            } else {
+                viewAction = NoteDetailsAction.GoBack
+            }
         }
     }
 
@@ -113,7 +117,7 @@ class NoteDetailsViewModel @Inject constructor(
                     description = updatedState.description
                 )
                 noteUseCase.createNote(note)
-                viewAction = NoteDetailsAction.Success
+                viewAction = NoteDetailsAction.GoBack
             }
         }
     }
@@ -122,7 +126,7 @@ class NoteDetailsViewModel @Inject constructor(
         if (viewState is NoteDetailsViewState.State) {
             val state = (viewState as NoteDetailsViewState.State)
             viewState = state.copy(isGoBackDialogShowing = false)
-            viewAction = NoteDetailsAction.Success
+            viewAction = NoteDetailsAction.GoBack
         }
     }
 
@@ -146,7 +150,7 @@ class NoteDetailsViewModel @Inject constructor(
                     state.description
                 )
                 noteUseCase.deleteNote(note)
-                viewAction = NoteDetailsAction.Success
+                viewAction = NoteDetailsAction.GoBack
             }
         }
     }

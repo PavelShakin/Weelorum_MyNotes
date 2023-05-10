@@ -92,13 +92,24 @@ class MyNotesFragment : BaseFragment() {
             }
     }
 
+    override fun onResume() {
+        super.onResume()
+        quitAppOnDoubleBackPressed()
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.obtainEvent(MyNotesEvent.Load)
     }
 
+    override fun onStop() {
+        super.onStop()
+        requireActivity().onBackPressedDispatcher.addCallback {
+            this.remove()
+        }
+    }
+
     private fun subscriptions() {
-        quitAppOnDoubleBackPressed()
         viewModel.viewActions().observe(viewLifecycleOwner) { action ->
             when (action) {
                 is MyNotesAction.GoToNoteDetails -> {

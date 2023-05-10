@@ -29,13 +29,13 @@ sealed class NoteDetailsViewState {
                 return description.isNotEmpty()
             }
 
-            return params.any { !it }
+            return params.any { it.not() }
         }
     }
 }
 
 sealed class NoteDetailsAction {
-    object Success : NoteDetailsAction()
+    object GoBack : NoteDetailsAction()
 }
 
 sealed class NoteDetailsEvent {

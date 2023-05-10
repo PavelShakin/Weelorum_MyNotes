@@ -30,8 +30,6 @@ class NoteDetailsFragment : BaseFragment() {
         injectViewModel(factory = providerFactory)
     }
 
-    private val lifecycleOwner = this
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -44,13 +42,6 @@ class NoteDetailsFragment : BaseFragment() {
                 viewModel.viewStates().observe(viewLifecycleOwner) { state ->
                     when (state) {
                         is NoteDetailsViewState.State -> {
-                            requireActivity().onBackPressedDispatcher.addCallback(lifecycleOwner) {
-                                if (state.description.isEmpty()) {
-                                    viewModel.obtainEvent(NoteDetailsEvent.OnBackPressed)
-                                } else {
-                                    goBack()
-                                }
-                            }
                             setContent {
                                 AppTheme {
                                     var title by remember { mutableStateOf(TextFieldValue(text = emptyString)) }
@@ -113,20 +104,34 @@ class NoteDetailsFragment : BaseFragment() {
             }
     }
 
+    override fun onResume() {
+        super.onResume()
+        requireActivity().onBackPressedDispatcher.addCallback {
+            viewModel.obtainEvent(NoteDetailsEvent.OnBackPressed)
+        }
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setEditMode()
     }
 
+    override fun onStop() {
+        super.onStop()
+        requireActivity().onBackPressedDispatcher.addCallback {
+            this.remove()
+        }
+    }
+
     private fun setEditMode() {
-        val noteId = arguments?.getString(GlobalConstants.BundleKey.NOTE_ID) ?: emptyString
+        val noteId = arguments?.getString(GlobalConstants.BundleKey.NOTE_ID).orEmpty()
         viewModel.obtainEvent(NoteDetailsEvent.Load(noteId))
     }
 
     private fun subscriptions() {
         viewModel.viewActions().observe(viewLifecycleOwner) { action ->
             when (action) {
-                is NoteDetailsAction.Success -> {
+                is NoteDetailsAction.GoBack -> {
                     navigateToAction(cR.id.action_createNoteFragment_to_myNotesFragment)
                 }
             }
