@@ -5,7 +5,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
 
-val textHugeSize = 20.sp
 val textMediumSize = 16.sp
 
 data class MyNotesTypography(

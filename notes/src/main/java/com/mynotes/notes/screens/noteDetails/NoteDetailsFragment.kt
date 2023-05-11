@@ -92,7 +92,7 @@ class NoteDetailsFragment : BaseFragment() {
                                             onCancelDialogClick = {
                                                 viewModel.obtainEvent(NoteDetailsEvent.CancelDialog)
                                             },
-                                            isError = state.noteError == null,
+                                            isError = state.noteError != null,
                                             errorText = state.noteError
                                         )
                                     }

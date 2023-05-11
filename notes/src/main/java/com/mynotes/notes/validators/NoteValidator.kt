@@ -6,7 +6,7 @@ import com.mynotes.resources.R
 class NoteValidator : INoteValidator {
 
     override fun fieldIsNotEmpty(input: String): Int? {
-        if (input.isNullOrEmpty()) return R.string.error_input_is_empty
+        if (input.isEmpty()) return R.string.error_input_is_empty
         return defaultReturnValue
     }
 

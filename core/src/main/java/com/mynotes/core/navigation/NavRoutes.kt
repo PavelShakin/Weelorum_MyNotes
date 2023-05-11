@@ -9,10 +9,6 @@ object NavRoutes {
         return Uri.parse("$pathUrl://$page")
     }
 
-    fun getSplashPagePath(): Uri {
-        return getPath(Page.splash)
-    }
-
     fun getNotesPagePath(): Uri {
         return getPath(Page.notes)
     }
@@ -22,7 +18,6 @@ object NavRoutes {
     }
 
     object Page {
-        const val splash = "splash"
         const val notes = "notes"
         const val createNote = "createNote"
     }

@@ -94,7 +94,7 @@ class MyNotesFragment : BaseFragment() {
 
     override fun onResume() {
         super.onResume()
-        quitAppOnDoubleBackPressed()
+        addOnDoubleBackPressedQuitCallback()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -131,7 +131,7 @@ class MyNotesFragment : BaseFragment() {
         }
     }
 
-    private fun quitAppOnDoubleBackPressed() {
+    private fun addOnDoubleBackPressedQuitCallback() {
         requireActivity().onBackPressedDispatcher.addCallback(this) {
             if (backPressedTime + backPressDelay >= System.currentTimeMillis()) {
                 requireActivity().finish()

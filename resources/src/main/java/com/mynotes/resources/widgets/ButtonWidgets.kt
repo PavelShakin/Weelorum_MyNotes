@@ -17,6 +17,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import com.mynotes.core.common.GlobalConstants.emptyString
 import com.mynotes.resources.R
 import com.mynotes.resources.themes.MyNotesTheme
 
@@ -68,7 +69,7 @@ object ButtonWidgets {
             ) {
                 Icon(
                     painter = painterResource(id = R.drawable.ic_add),
-                    contentDescription = null,
+                    contentDescription = emptyString,
                     tint = MyNotesTheme.colors.textColor
                 )
             }
