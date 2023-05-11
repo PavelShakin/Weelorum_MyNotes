@@ -9,7 +9,7 @@ plugins {
 
 android {
     compileSdk = Config.compileSdk
-    namespace = Config.dataId
+    namespace = Config.Modules.data
 
     defaultConfig {
         minSdk = Config.minSdk

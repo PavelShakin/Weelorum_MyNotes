@@ -9,7 +9,7 @@ plugins {
 
 android {
     compileSdk = Config.compileSdk
-    namespace = Config.domainId
+    namespace = Config.Modules.domain
 
     defaultConfig {
         minSdk = Config.minSdk

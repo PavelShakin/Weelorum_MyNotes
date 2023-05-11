@@ -11,6 +11,7 @@ import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.compose.ui.res.stringResource
 import androidx.core.os.bundleOf
+import androidx.lifecycle.LifecycleOwner
 import com.mynotes.core.common.GlobalConstants
 import com.mynotes.core.common.GlobalConstants.backPressDelay
 import com.mynotes.core.views.BaseFragment
@@ -104,7 +105,7 @@ class MyNotesFragment : BaseFragment() {
 
     override fun onStop() {
         super.onStop()
-        requireActivity().onBackPressedDispatcher.addCallback {
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
             this.remove()
         }
     }
@@ -132,7 +133,7 @@ class MyNotesFragment : BaseFragment() {
     }
 
     private fun addOnDoubleBackPressedQuitCallback() {
-        requireActivity().onBackPressedDispatcher.addCallback(this) {
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
             if (backPressedTime + backPressDelay >= System.currentTimeMillis()) {
                 requireActivity().finish()
             } else {

@@ -31,13 +31,15 @@ object Config {
     /**
      * com.mynotes.android.buildsrc.Config: modules Id
      */
-    const val applicationId = "com.mynotes.android"
-    const val coreId = "com.mynotes.core"
-    const val notesId = "com.mynotes.notes"
-    const val resourcesId = "com.mynotes.resources"
-    const val databaseId = "com.mynotes.database"
-    const val dataId = "com.mynotes.data"
-    const val domainId = "com.mynotes.domain"
+    object Modules {
+        const val application = "com.mynotes.android"
+        const val core = "com.mynotes.core"
+        const val notes = "com.mynotes.notes"
+        const val resources = "com.mynotes.resources"
+        const val database = "com.mynotes.database"
+        const val data = "com.mynotes.data"
+        const val domain = "com.mynotes.domain"
+    }
     /**
      * com.mynotes.android.buildsrc.Config: testInstrumentationRunner
      */

@@ -9,7 +9,7 @@ plugins {
 
 android {
     compileSdk = Config.compileSdk
-    namespace = Config.databaseId
+    namespace = Config.Modules.database
 
     defaultConfig {
         minSdk = Config.minSdk

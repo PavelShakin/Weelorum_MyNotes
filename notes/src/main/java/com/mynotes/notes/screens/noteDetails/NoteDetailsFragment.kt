@@ -14,6 +14,7 @@ import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.TextFieldValue
+import androidx.lifecycle.LifecycleOwner
 import com.mynotes.core.common.GlobalConstants
 import com.mynotes.core.common.GlobalConstants.emptyString
 import com.mynotes.core.views.BaseFragment
@@ -106,7 +107,7 @@ class NoteDetailsFragment : BaseFragment() {
 
     override fun onResume() {
         super.onResume()
-        requireActivity().onBackPressedDispatcher.addCallback {
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
             viewModel.obtainEvent(NoteDetailsEvent.OnBackPressed)
         }
     }
@@ -118,7 +119,7 @@ class NoteDetailsFragment : BaseFragment() {
 
     override fun onStop() {
         super.onStop()
-        requireActivity().onBackPressedDispatcher.addCallback {
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
             this.remove()
         }
     }

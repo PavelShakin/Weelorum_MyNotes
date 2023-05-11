@@ -14,7 +14,7 @@ class NoteLocalDataSource @Inject constructor(
     }
 
     override fun getList(): List<NoteEntity> {
-        return dao.getList() ?: emptyList()
+        return dao.getList().orEmpty()
     }
 
     override fun create(model: NoteEntity) {

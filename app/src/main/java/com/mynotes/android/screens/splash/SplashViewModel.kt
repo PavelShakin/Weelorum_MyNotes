@@ -21,46 +21,24 @@ class SplashViewModel @Inject constructor(
     }
 
     init {
-        viewState = SplashViewState.IsLoadingState()
+        viewState = SplashViewState.State(true)
+    }
+
+    override fun obtainEvent(event: SplashEvent) {
+        when (event) {
+            is SplashEvent.Load -> checkIsNotesEmpty()
+        }
     }
 
     private fun checkIsNotesEmpty() {
         viewModelScope.launch {
             withContext(defaultDispatcher.io) {
                 delay(DEFAULT_DELAY)
-                viewState = SplashViewState.IsNotesEmptyState(getNotesUseCase.invoke().isEmpty())
-                obtainEvent(SplashEvent.OnNext)
-            }
-        }
-    }
-
-    override fun obtainEvent(event: SplashEvent) {
-        when (val state = viewState) {
-            is SplashViewState.IsNotesEmptyState -> reduce(event, state)
-            is SplashViewState.IsLoadingState -> reduce(event, state)
-        }
-    }
-
-    private fun reduce(event: SplashEvent, state: SplashViewState.IsLoadingState) {
-        when (event) {
-            is SplashEvent.Load -> checkIsNotesEmpty()
-            else -> throw IllegalArgumentException("event: $event with state $state")
-        }
-    }
-
-    private fun reduce(event: SplashEvent, state: SplashViewState.IsNotesEmptyState) {
-        when (event) {
-            is SplashEvent.Load -> onNextScreen(state)
-            is SplashEvent.OnNext -> onNextScreen(state)
-        }
-    }
-
-    private fun onNextScreen(state: SplashViewState.IsNotesEmptyState) {
-        viewModelScope.launch {
-            viewAction = if (state.isNotesEmpty()) {
-                SplashAction.OnCreateNoteScreen
-            } else {
-                SplashAction.OnMyNotesScreen
+                viewAction = if (getNotesUseCase.invoke().isEmpty()) {
+                    SplashAction.OnCreateNoteScreen
+                } else {
+                    SplashAction.OnMyNotesScreen
+                }
             }
         }
     }
