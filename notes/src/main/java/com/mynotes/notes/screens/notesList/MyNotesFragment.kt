@@ -5,13 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.activity.addCallback
+import androidx.activity.OnBackPressedCallback
 import androidx.compose.material.Scaffold
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.compose.ui.res.stringResource
 import androidx.core.os.bundleOf
-import androidx.lifecycle.LifecycleOwner
 import com.mynotes.core.common.GlobalConstants
 import com.mynotes.core.common.GlobalConstants.backPressDelay
 import com.mynotes.core.views.BaseFragment
@@ -30,8 +29,18 @@ class MyNotesFragment : BaseFragment() {
             factory = providerFactory
         )
     }
-
     private var backPressedTime: Long = 0
+    private val callback = object : OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+            if (backPressedTime + backPressDelay >= System.currentTimeMillis()) {
+                requireActivity().finish()
+            } else {
+                Toast.makeText(context, getString(R.string.press_back_to_leave), Toast.LENGTH_SHORT)
+                    .show()
+            }
+            backPressedTime = System.currentTimeMillis()
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -95,7 +104,7 @@ class MyNotesFragment : BaseFragment() {
 
     override fun onResume() {
         super.onResume()
-        addOnDoubleBackPressedQuitCallback()
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -105,9 +114,7 @@ class MyNotesFragment : BaseFragment() {
 
     override fun onStop() {
         super.onStop()
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
-            this.remove()
-        }
+        callback.remove()
     }
 
     private fun subscriptions() {
@@ -129,18 +136,6 @@ class MyNotesFragment : BaseFragment() {
                     }
                 }
             }
-        }
-    }
-
-    private fun addOnDoubleBackPressedQuitCallback() {
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
-            if (backPressedTime + backPressDelay >= System.currentTimeMillis()) {
-                requireActivity().finish()
-            } else {
-                Toast.makeText(context, getString(R.string.press_back_to_leave), Toast.LENGTH_SHORT)
-                    .show()
-            }
-            backPressedTime = System.currentTimeMillis()
         }
     }
 }

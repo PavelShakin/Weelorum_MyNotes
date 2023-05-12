@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.addCallback
+import androidx.activity.OnBackPressedCallback
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -14,7 +14,6 @@ import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.TextFieldValue
-import androidx.lifecycle.LifecycleOwner
 import com.mynotes.core.common.GlobalConstants
 import com.mynotes.core.common.GlobalConstants.emptyString
 import com.mynotes.core.views.BaseFragment
@@ -29,6 +28,11 @@ class NoteDetailsFragment : BaseFragment() {
 
     private val viewModel: NoteDetailsViewModel by lazy {
         injectViewModel(factory = providerFactory)
+    }
+    private val callback = object : OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+            viewModel.obtainEvent(NoteDetailsEvent.OnBackPressed)
+        }
     }
 
     override fun onCreateView(
@@ -107,9 +111,7 @@ class NoteDetailsFragment : BaseFragment() {
 
     override fun onResume() {
         super.onResume()
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
-            viewModel.obtainEvent(NoteDetailsEvent.OnBackPressed)
-        }
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -119,9 +121,7 @@ class NoteDetailsFragment : BaseFragment() {
 
     override fun onStop() {
         super.onStop()
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
-            this.remove()
-        }
+        callback.remove()
     }
 
     private fun setEditMode() {
