@@ -29,9 +29,17 @@ object Config {
     private const val currentTask = "0"
     const val versionName = "$major.$minor.${path}_$currentTask"
     /**
-     * com.mynotes.android.buildsrc.Config: application Id
+     * com.mynotes.android.buildsrc.Config: modules Id
      */
-    const val applicationId = "com.mynotes.android"
+    object Modules {
+        const val application = "com.mynotes.android"
+        const val core = "com.mynotes.core"
+        const val notes = "com.mynotes.notes"
+        const val resources = "com.mynotes.resources"
+        const val database = "com.mynotes.database"
+        const val data = "com.mynotes.data"
+        const val domain = "com.mynotes.domain"
+    }
     /**
      * com.mynotes.android.buildsrc.Config: testInstrumentationRunner
      */

@@ -6,7 +6,7 @@ object Dependencies {
      * com.vortex.android.buildsrc.Dependencies: Android base libraries
      */
     object AndroidBase {
-        const val ktx = ("androidx.core:core-ktx:1.7.0")
+        const val ktx = ("androidx.core:core-ktx:1.7.10")
         const val appcompat = ("androidx.appcompat:appcompat:1.4.1")
         const val material = ("com.google.android.material:material:1.5.0")
         const val constraintLayout = ("androidx.constraintlayout:constraintlayout:2.1.3")
@@ -112,5 +112,17 @@ object Dependencies {
         const val truth = ("com.google.truth:truth:1.0.1")
         const val mockitoCore = ("org.mockito:mockito-core:$mockitoVersion")
         const val mockitoAndroid = ("org.mockito:mockito-android:$mockitoVersion")
+    }
+
+    /**
+     * com.mynotes.android.buildsrc.Dependencies: Modules
+     */
+    object Modules {
+        val core = mapOf("path" to ":core")
+        val resources = mapOf("path" to ":resources")
+        val notes = mapOf("path" to ":notes")
+        val database = mapOf("path" to ":database")
+        val data = mapOf("path" to ":data")
+        val domain = mapOf("path" to ":domain")
     }
 }

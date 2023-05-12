@@ -9,6 +9,7 @@ plugins {
 
 android {
     compileSdk = Config.compileSdk
+    namespace = Config.Modules.core
 
     defaultConfig {
         minSdk = Config.minSdk
@@ -38,6 +39,10 @@ android {
 
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_11.toString()
+    }
+
+    buildFeatures {
+        compose = true
     }
 }
 
@@ -98,5 +103,4 @@ dependencies {
     implementation(Dependencies.Room.roomKtx)
     testImplementation(Dependencies.Room.testing)
     //endregion
-
 }

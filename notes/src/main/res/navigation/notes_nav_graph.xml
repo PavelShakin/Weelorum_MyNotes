@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/customer_nav_graph"
+    app:startDestination="@id/myNotesFragment">
+
+    <deepLink app:uri="commynotes://notes" />
+
+    <fragment
+        android:id="@+id/myNotesFragment"
+        android:name="com.mynotes.notes.screens.notesList.MyNotesFragment"
+        android:label="">
+
+        <action
+            android:id="@+id/action_myNotesFragment_to_editNoteFragment"
+            app:destination="@id/editNoteFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editNoteFragment"
+        android:name="com.mynotes.notes.screens.noteDetails.NoteDetailsFragment"
+        android:label="">
+
+        <action
+            android:id="@+id/action_createNoteFragment_to_myNotesFragment"
+            app:destination="@id/myNotesFragment" />
+        <deepLink app:uri="commynotes://createNote" />
+    </fragment>
+</navigation>

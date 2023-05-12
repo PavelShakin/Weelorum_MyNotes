@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">My Application</string>
+
+    <!-- Actions -->
+    <string name="action_save">Save</string>
+    <string name="action_go_back">Go back</string>
+    <string name="action_continue">Continue</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="action_delete">Delete</string>
+
+    <!-- Headers -->
+    <string name="header_notes_list">My Notes</string>
+    <string name="header_note_details">Note Details</string>
+    <string name="header_note_delete_selected">Delete Selected</string>
+
+    <!-- Dialogs -->
+    <string name="dialog_note_empty_title">Note is empty</string>
+    <string name="dialog_note_empty_subtitle">You\'re trying to save empty note. Changes won\'t save.
+        Do you want to go back to your notes or continue?</string>
+    <string name="dialog_delete_note_title">Delete</string>
+    <string name="dialog_delete_note_subtitle">Do you want to delete this note?</string>
+
+    <!-- Notes -->
+    <string name="notes_empty_placeholder">You haven\'t create any notes yet</string>
+    <string name="note_empty_title">Untitled</string>
+
+    <!-- Toast -->
+    <string name="press_back_to_leave">Press back again to leave the app</string>
+
+    <!-- Error -->
+    <string name="error_input_is_empty">The field can\'t be empty</string>
+    <string name="error_input_is_empty_2">Can\'t be empty</string>
+</resources>

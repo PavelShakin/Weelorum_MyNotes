@@ -8,11 +8,11 @@ plugins {
 }
 
 android {
-    namespace = Config.applicationId
+    namespace = Config.Modules.application
     compileSdk = Config.compileSdk
 
     defaultConfig {
-        applicationId = Config.applicationId
+        applicationId = Config.Modules.application
         minSdk = Config.minSdk
         targetSdk = Config.targetSdk
         versionCode = Config.versionCode
@@ -31,13 +31,20 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = Dependencies.Compose.compileVersion
+    }
+
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_11.toString()
     }
+
     buildFeatures {
         viewBinding = true
         compose = true
@@ -45,6 +52,14 @@ android {
 }
 
 dependencies {
+    //region Modules
+    implementation(project(Dependencies.Modules.core))
+    implementation(project(Dependencies.Modules.resources))
+    implementation(project(Dependencies.Modules.notes))
+    implementation(project(Dependencies.Modules.database))
+    implementation(project(Dependencies.Modules.data))
+    implementation(project(Dependencies.Modules.domain))
+    //endregion
 
     //region AndroidBase
     implementation(Dependencies.AndroidBase.ktx)
